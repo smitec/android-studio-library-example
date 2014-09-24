@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion "19.1.0"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 20
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file:////Users/elliot/.m2/repository") //Taken from mvn -X
+            pom.groupId = 'net.smitec.lib'
+            pom.artifactId = 'test-lib'
+            pom.version = '0.0.1'
+        }
+    }
+}
